@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionList>
+    <Extension Id="com.notorcus.creators-toolkit.shortcut">
+        <HostList>
+            <Host Name="PPRO" Port="8800"/>
+        </HostList>
+    </Extension>
+</ExtensionList>
