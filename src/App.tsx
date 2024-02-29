@@ -1,5 +1,4 @@
 //App.tsx
-
 import React, { useState } from 'react';
 import RunButton from './components/RunButton';
 import TextInput from './components/TextInput';
@@ -7,15 +6,21 @@ import TextInput from './components/TextInput';
 const App: React.FC = () => {
   const [sequenceName, setSequenceName] = useState('');
 
-  const handleRunClick = () => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSequenceName(event.target.value);
+  };
+
+  const handleCheckSequenceClick = () => {
     const csInterface = new CSInterface();
-    const script = `$.runScript.alertTest("${sequenceName}")`;
+    
+    console.log("Sequence Name to check: ", sequenceName);
+    const script = `$.runScript.checkSequenceExists("${sequenceName}")`;
   
     csInterface.evalScript(script, (result: any) => {
       console.log("ExtendScript Result: ", result);
-      // Optionally handle feedback from ExtendScript here
     });
-  };  
+  };
+  
 
   return (
     <div>
@@ -25,7 +30,7 @@ const App: React.FC = () => {
         onChange={setSequenceName}
         placeholder="Enter Sequence Name"
       />
-      <RunButton onClick={handleRunClick} />
+      <RunButton onClick={handleCheckSequenceClick} />
     </div>
   );
 };
