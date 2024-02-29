@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -28,7 +28,7 @@ module.exports = {
     static: {
         directory: path.join(__dirname, 'dist'),
     },
-    compress: true,
+    host: 'localhost', // Specify the host
     port: 1000,
     hot: true,
   },
