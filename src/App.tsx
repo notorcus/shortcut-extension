@@ -5,10 +5,10 @@ import RenderButton from './components/RenderButton';
 const App: React.FC = () => {
   const handleRenderClick = () => {
     const csInterface = new CSInterface();
-    csInterface.evalScript(`$.runScript.alertSelectedItemName()`, (result: any) => {
-        console.log("Selected Item: ", result);
+    csInterface.evalScript(`$.runScript.alertAndSaveSelectedItemInfo()`, (result: any) => {
+        console.log(result);
     });
-};
+  };
 
   return (
     <div>
