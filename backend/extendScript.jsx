@@ -1,23 +1,17 @@
 //extendScript.jsx
 $.runScript = {
-    checkSequenceExists: function(sequenceName) {
-        // Log the received sequenceName to confirm its value
-        $.writeln("Checking for sequence: " + sequenceName); // Add this line
-
-        var sequences = app.project.sequences;
-        var sequenceExists = false;
-        for (var i = 0; i < sequences.numSequences; i++) {
-            var seq = sequences[i];
-            if (seq.name === sequenceName) {
-                sequenceExists = true;
-                break;
+    alertSelectedItemName: function() {
+        var project = app.project;
+        if (project) {
+            var selection = project.activeSequence.getSelection();
+            if (selection && selection.length > 0) {
+                var selectedItemName = selection[0].name;
+                alert("Selected item: " + selectedItemName);
+                return selectedItemName; // Returns the name for further processing if needed
+            } else {
+                alert("No item selected.");
+                return "No item selected.";
             }
-        }
-
-        if (sequenceExists) {
-            alert(sequenceName + " exists!");
-        } else {
-            alert(sequenceName + " does not exist :(");
         }
     }
 }

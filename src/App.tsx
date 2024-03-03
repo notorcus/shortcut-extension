@@ -1,36 +1,19 @@
 //App.tsx
-import React, { useState } from 'react';
-import RunButton from './components/RunButton';
-import TextInput from './components/TextInput';
+import React from 'react';
+import RenderButton from './components/RenderButton';
 
 const App: React.FC = () => {
-  const [sequenceName, setSequenceName] = useState('');
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSequenceName(event.target.value);
-  };
-
-  const handleCheckSequenceClick = () => {
+  const handleRenderClick = () => {
     const csInterface = new CSInterface();
-    
-    console.log("Sequence Name to check: ", sequenceName);
-    const script = `$.runScript.checkSequenceExists("${sequenceName}")`;
-  
-    csInterface.evalScript(script, (result: any) => {
-      console.log("ExtendScript Result: ", result);
+    csInterface.evalScript(`$.runScript.alertSelectedItemName()`, (result: any) => {
+        console.log("Selected Item: ", result);
     });
-  };
-  
+};
 
   return (
     <div>
       <h1>Premiere Pro Extension</h1>
-      <TextInput
-        value={sequenceName}
-        onChange={setSequenceName}
-        placeholder="Enter Sequence Name"
-      />
-      <RunButton onClick={handleCheckSequenceClick} />
+      <RenderButton onClick={handleRenderClick} />
     </div>
   );
 };
